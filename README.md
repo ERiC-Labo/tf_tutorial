@@ -46,9 +46,15 @@ tf2::Quaternion quat_1;
 quat_1.setRotation(kaiten_jiku, M_PI);
 ```
 
-### 回転
+### 回転軸の周りにpi回転
 ```
 tf2::Quaternion q_final;
 q_final = quat_1 * q_moto;
+```
+### オイラー角を独自に設定して回転
+```
+tf2::Quaternion q_2, q_euler;
+q_euler.setRPY(M_PI/4, 3*M_PI/3, 2*M_PI/3);
+q_2 = q_euler * q_moto;
 ```
 
