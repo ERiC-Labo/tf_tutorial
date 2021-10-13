@@ -57,4 +57,14 @@ tf2::Quaternion q_2, q_euler;
 q_euler.setRPY(M_PI/4, 3*M_PI/3, 2*M_PI/3);
 q_2 = q_euler * q_moto;
 ```
-
+### ベクトルの回転
+```
+double x, y, z; //回転前のベクトルの要素
+double x_1, y_1, z_1; //回転後のベクトルの要素
+tf2::Quaternion q_moto(x, y, z, 0), quat, quat_after;
+tf2::convert(get_tf.transform.rotation, quat);
+q_after = quat * q_moto * quat.inverse();
+x_1 = q_after[0];
+y_1 = q_after[1];
+z_1 = q_after[2];
+```
