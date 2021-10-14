@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="x" default="0"/>
+    <arg name="y" default="1"/>
+    <arg name="z" default="1"/>
+    <arg name="roll" default="0.8"/>
+    <arg name="pitch" default="0.4"/>
+    <arg name="yaw" default="0"/>
+    <arg name="child_frame" default="tsuchida_static_tf"/>
+    <arg name="parent_frame" default="world"/>
+    <arg name="ori_target" default="tsuchida_static_tf"/>
+    <arg name="ori_source" default="world"/>
+    <arg name="rvizconfig" default="$(find tf_first)/rviz/tsuchida.rviz"/>
+    
+    
+
+    <node pkg="tf_first" type="tf_broadcast" name="tf_broadcast">
+        <param name="x" value="$(arg x)"/>
+        <param name="y" value="$(arg y)"/>
+        <param name="z" value="$(arg z)"/>
+        <param name="roll" value="$(arg roll)"/>
+        <param name="pitch" value="$(arg pitch)"/>
+        <param name="yaw" value="$(arg yaw)"/>
+        <param name="child_frame" value="$(arg child_frame)"/>
+        <param name="parent_frame" value="$(arg parent_frame)"/>
+    </node>
+
+    <node pkg="tf_first" type="tf_converter" name="tf_converter">
+        <param name="ori_target" value="$(arg ori_target)"/>
+        <param name="ori_source" value="$(arg ori_source)"/>
+    </node>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+</launch>
