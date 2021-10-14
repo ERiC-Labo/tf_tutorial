@@ -89,6 +89,8 @@ int main(int argc, char** argv)
     tf2::convert(q_pitch * q_yaw * q_zero, out_tf_4.transform.rotation);
     tf2::convert(q_roll * q_pitch * q_yaw * q_zero, out_tf_5.transform.rotation);
     tf2::convert(q_all * q_zero, out_tf_6.transform.rotation);
+    tf2::Vector3 vec;
+    
 
 
    
@@ -103,6 +105,12 @@ int main(int argc, char** argv)
     tf2_ros::TransformBroadcaster br_1, br_2, br_3, br_4, br_5, br_6;
     while (ros::ok())
     {
+        out_tf_1.header.stamp = ros::Time::now();
+        out_tf_2.header.stamp = ros::Time::now();
+        out_tf_3.header.stamp = ros::Time::now();
+        out_tf_4.header.stamp = ros::Time::now();
+        out_tf_5.header.stamp = ros::Time::now();
+        out_tf_6.header.stamp = ros::Time::now();
         br_1.sendTransform(out_tf_1);
         br_2.sendTransform(out_tf_2);
         br_3.sendTransform(out_tf_3);
